@@ -425,10 +425,6 @@
 
         function renderMetrics(item, recommendations) {
             const profile = item.profile || {};
-            const emotions = profile.emotion_counts || {};
-            const neutralCount = emotions.neutral || 0;
-            const positiveCount = emotions.positive || 0;
-            const negativeCount = emotions.very_negative || 0;
             els.metrics.innerHTML = `
                 <div class="metric">
                     <b>${escapeHtml(profile.topic_interactions || 0)}</b>
@@ -443,8 +439,8 @@
                     <span>当前推荐条数</span>
                 </div>
                 <div class="metric">
-                    <b>${escapeHtml(neutralCount + positiveCount)} / ${escapeHtml(negativeCount)}</b>
-                    <span>正中性 / 强负面历史</span>
+                    <b>${formatPercent(profile.strategy_diff_ratio || 0)}</b>
+                    <span>两策略差异度</span>
                 </div>
             `;
         }
