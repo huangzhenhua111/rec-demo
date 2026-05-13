@@ -1,0 +1,912 @@
+{
+  "version": "rec2_demo_v1",
+  "generated_at": "2026-05-13T22:29:10",
+  "strategy_keys": [
+    "anti_cocoon",
+    "anti_polarization"
+  ],
+  "cases": [
+    {
+      "case_id": "demo_case_001",
+      "user_id": "demo_user_001",
+      "user_name": "演示用户A",
+      "topic": "无锡马拉松拍摄者张先生遭受网络暴力",
+      "display_label": "演示用户A / 无锡马拉松拍摄者张先生遭受网络暴力",
+      "current_post": "【#马拉松亲密事件拍摄者回应事件始末#】 3月23日，无锡马拉松开跑，在比赛期间，一对举止亲密的男女被拍到后，引发外界热议。 3月25日，拍摄到这对举止亲密男女的当事人张先生发布视频，回应隐藏视频的原因。当天下午，记者联系到张先生，张先生称，当时拍摄马拉松起跑前的画面，本意是想展现参赛选 ​",
+      "profile": {
+        "topic_interactions": 3,
+        "negative_ratio": 0.0,
+        "emotion_counts": {},
+        "strategy_diff_ratio": 0.6
+      },
+      "strategies": {
+        "anti_cocoon": {
+          "label": "反制信息茧房",
+          "description": "同主题下引入责任边界、事实澄清和多元视角内容，减少单一观点强化。",
+          "recommendations": [
+            {
+              "rank": 1,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "上游新闻",
+              "text": "#勿让自由表达沦为攻击他人的工具#【马拉松亲密男女被打“野鸳鸯”标签，公共讨论的边界何在？】#公共讨论要把握好边界和尺度# 3月23日，无锡马拉松比赛期间，一对举止亲密的男女被拍到后，引发外界热议。关于视频中两人关系的猜测也不绝入耳，甚至被打上“野鸳鸯”的标签。对此，视频拍摄者不堪其扰， ​",
+              "emotion": "unknown",
+              "reason": "责任边界补充",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7316,
+                "authority": 129.5706,
+                "depth": 0.5025,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 2,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "封面新闻",
+              "text": "【#马拉松亲密事件拍摄者道歉#】#别让臆测把马拉松事件变成罗生门#3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。3月25日下午，视频拍摄者@我是伤心玫瑰 发文回应，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识到了自己 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7217,
+                "authority": 139.0389,
+                "depth": 0.5763,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 3,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "中国新闻周刊",
+              "text": "【#马拉松亲密事件拍摄者回应事件始末#】 3月23日，无锡马拉松开跑，在比赛期间，一对举止亲密的男女被拍到后，引发外界热议。 3月25日，拍摄到这对举止亲密男女的当事人张先生发布视频，回应隐藏视频的原因。当天下午，记者联系到张先生，张先生称，当时拍摄马拉松起跑前的画面，本意是想展现参赛选 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7203,
+                "authority": 133.758,
+                "depth": 0.5713,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 4,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "大皖新闻",
+              "text": "#马拉松一对男女亲密动作被拍到#【#马拉松亲密事件拍摄者道歉#】3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。3月25日下午，视频拍摄者@我是伤心玫瑰 发文回应，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识到了自己对 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7195,
+                "authority": 128.6988,
+                "depth": 0.5763,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 5,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "新闻晨报",
+              "text": "【马拉松亲密事件拍摄者称两天没睡好觉】3月23日，无锡马拉松开跑，在比赛期间，一对举止亲密的男女被拍到后，引发外界热议。 3月25日，拍摄到这对举止亲密男女的当事人张先生发布视频，回应隐藏视频的原因。当天下午，记者联系到张先生 @我是伤心玫瑰。张先生称，当时拍摄马拉松起跑前的画面，本意是 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7158,
+                "authority": 127.3771,
+                "depth": 0.5713,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 6,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "观察者网",
+              "text": "【#马拉松亲密事件拍摄者道歉#】3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。3月25日下午，视频拍摄者@我是伤心玫瑰 发文回应，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识到了自己对别人造成的困扰。 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7146,
+                "authority": 129.3345,
+                "depth": 0.5563,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 7,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "封面新闻",
+              "text": "【#马拉松亲密事件拍摄者呼吁干点正事#】#马拉松亲密事件拍摄者道歉# #马拉松亲密事件拍摄者称两天没睡好#3月23日，无锡马拉松开跑，在比赛期间，一对举止亲密的男女被拍到后，引发外界热议。3月25日，拍摄到这对举止亲密男女的当事人张先生发布视频，回应隐藏视频的原因。当天下午，记者联系到张先生 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7109,
+                "authority": 124.0481,
+                "depth": 0.5763,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 8,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "津云新闻",
+              "text": "【#马拉松亲密事件拍摄者称不敢看评论# ：感觉很恐怖，被舆论推着走】#马拉松野鸳鸯拍摄者称两天没睡好觉# 3月23日，无锡马拉松开跑，在比赛期间，一对举止亲密的男女被拍到后，引发外界热议。 3月25日，拍摄到这对举止亲密男女的当事人张先生发布视频，回应隐藏视频的原因。当天下午，记者联系到张先 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7099,
+                "authority": 123.3075,
+                "depth": 0.5763,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            }
+          ]
+        },
+        "anti_polarization": {
+          "label": "反制情绪极化",
+          "description": "过滤强负面表达，优先推荐中性、权威、解释性内容，引导情绪降温。",
+          "recommendations": [
+            {
+              "rank": 1,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "封面新闻",
+              "text": "【#马拉松亲密事件拍摄者道歉#】#别让臆测把马拉松事件变成罗生门#3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。3月25日下午，视频拍摄者@我是伤心玫瑰 发文回应，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识到了自己 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7573,
+                "authority": 139.0389,
+                "depth": 0.5763,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 2,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "大皖新闻",
+              "text": "#马拉松一对男女亲密动作被拍到#【#马拉松亲密事件拍摄者道歉#】3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。3月25日下午，视频拍摄者@我是伤心玫瑰 发文回应，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识到了自己对 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7552,
+                "authority": 128.6988,
+                "depth": 0.5763,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 3,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "观察者网",
+              "text": "【#马拉松亲密事件拍摄者道歉#】3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。3月25日下午，视频拍摄者@我是伤心玫瑰 发文回应，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识到了自己对别人造成的困扰。 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7522,
+                "authority": 129.3345,
+                "depth": 0.5563,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 4,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "钱江晚报",
+              "text": "#马拉松一对男女亲密动作被拍到# 【#别让臆测把马拉松事件变成罗生门#】3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。 3月25日下午，视频拍摄者@我是伤心玫瑰 发文回应，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7439,
+                "authority": 121.6334,
+                "depth": 0.5763,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 5,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "看度新闻",
+              "text": "【#无锡马拉松风波拍摄者回应隐藏视频#】#无锡马拉松风波拍摄者发声# 3月23日，无锡马拉松赛场上，一对年龄差距明显的男女因举止亲密躲避镜头的行为，被网友戏称为”野鸳鸯“。有人指认称男选手是远光软件名誉董事长陈利浩。3月24日晚间，远光软件官方企业号发布澄清声明，强调陈利浩前几日均在广东履 ​",
+              "emotion": "unknown",
+              "reason": "权威事实梳理",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7425,
+                "authority": 121.0974,
+                "depth": 0.5737,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 6,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "上游新闻",
+              "text": "#勿让自由表达沦为攻击他人的工具#【马拉松亲密男女被打“野鸳鸯”标签，公共讨论的边界何在？】#公共讨论要把握好边界和尺度# 3月23日，无锡马拉松比赛期间，一对举止亲密的男女被拍到后，引发外界热议。关于视频中两人关系的猜测也不绝入耳，甚至被打上“野鸳鸯”的标签。对此，视频拍摄者不堪其扰， ​",
+              "emotion": "unknown",
+              "reason": "理性规则解释",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7418,
+                "authority": 129.5706,
+                "depth": 0.5025,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 7,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "南国早报",
+              "text": "【#马拉松亲密事件拍摄者道歉#】3月23日，江苏无锡马拉松赛场上，一段由参赛选手拍摄的赛前视频意外引起热议。25日下午，视频拍摄者回应称，自己不想参与到这种风波当中，并解释隐藏原视频的原因，希望大家不要再继续讨论这件事情，已意识到了自己对别人造成的困扰。#马拉松一对男女亲密动作被拍到# ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.739,
+                "authority": 119.5062,
+                "depth": 0.5688,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 8,
+              "event": "无锡马拉松拍摄者张先生遭受网络暴力",
+              "user_name": "南国早报",
+              "text": "#马拉松一对男女亲密动作被拍到#【#董事长被指马拉松上与女子举止亲密#】3月23日，无锡马拉松开跑，在比赛期间，一对举止亲密的男女被拍到后，引发外界热议。视频中，男子年龄较大，而女子看起来很年轻。有人指认称男选手是远光软件名誉董事长陈利浩。3月24日晚间，远光软件官方企业号发布澄清声明，强 ​",
+              "emotion": "unknown",
+              "reason": "权威事实梳理",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7267,
+                "authority": 119.8073,
+                "depth": 0.505,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 1.0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "demo_case_002",
+      "user_id": "demo_user_002",
+      "user_name": "演示用户B",
+      "topic": "金赛纶直播揭露与金秀贤家暴爱情",
+      "display_label": "演示用户B / 金赛纶直播揭露与金秀贤家暴爱情",
+      "current_post": "#金秀贤公开录音证据#【金秀贤公开1年前录音证据！寄存证信函「有告知金赛纶不要惊慌」】#金秀贤控诉金赛纶遗属隐瞒事实#据@ETtoday星光雲官方微博 金秀贤在记者会上公开了一段1年前的通话录音档，强调关于公司寄存证信函给金赛纶一事，早就和女方经纪公司说明过，反控金赛纶遗属隐瞒事实。 ​",
+      "profile": {
+        "topic_interactions": 8,
+        "negative_ratio": 0.0,
+        "emotion_counts": {
+          "positive": 1
+        },
+        "strategy_diff_ratio": 0.8
+      },
+      "strategies": {
+        "anti_cocoon": {
+          "label": "反制信息茧房",
+          "description": "同主题下引入责任边界、事实澄清和多元视角内容，减少单一观点强化。",
+          "recommendations": [
+            {
+              "rank": 1,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "津云新闻",
+              "text": "【#金秀贤回应Deepseek总结版#】 3月14日，金秀贤发万字长文，文中他承认了和金赛纶的恋情，并回应了信件问题、经济问题等。Deepseek给出了万字长文“省流版”，还总结金秀贤的长文称：“金秀贤的万字长文回应试图从多个角度澄清争议，但其效果取决于公众对证据的信任度。”#金秀贤承认与金赛纶恋情#（ ​",
+              "emotion": "unknown",
+              "reason": "事实澄清视角",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7196,
+                "authority": 122.9544,
+                "depth": 0.5913,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 2,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "搜狐新闻客户端",
+              "text": "【#Deepseek谈金秀贤万字长文#】#金秀贤回应Deepseek总结版# 3月14日，金秀贤发万字长文，文中他承认了和金赛纶的恋情，并回应了信件问题、经济问题等。Deepseek给出了万字长文“省流版”，还总结金秀贤的长文称：“金秀贤的万字长文回应试图从多个角度澄清争议，但其效果取决于公众对证据的信任度。” ​",
+              "emotion": "unknown",
+              "reason": "事实澄清视角",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7163,
+                "authority": 119.6687,
+                "depth": 0.6013,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 3,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "逐浪新闻",
+              "text": "【#金秀贤回应Deepseek总结版##金秀贤承认与金赛纶恋情# 】 3月14日，金秀贤发万字长文，文中他承认了和金赛纶的恋情，并回应了信件问题、经济问题等。Deepseek给出了万字长文“省流版”，还总结金秀贤的长文称：“金秀贤的万字长文回应试图从多个角度澄清争议，但其效果取决于公众对证据的信任度。” ​",
+              "emotion": "unknown",
+              "reason": "事实澄清视角",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7159,
+                "authority": 121.0043,
+                "depth": 0.5913,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 4,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "头条新闻",
+              "text": "【#金赛纶遗属回应金秀贤N号房行为#】#金赛纶遗属不公开金秀贤N号房证据# 3月27日，金赛纶家人的律师举行发布会。金赛纶遗属回应之前提到金秀贤N号房级别的证据，表示金秀贤在金赛纶未成年时期，做出了类似N号房级别的行为：“提及N号房事件，是为了揭露金秀贤的厚颜无耻态度，并引起大众警觉，同时也 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7074,
+                "authority": 129.0288,
+                "depth": 0.5075,
+                "emotion_balance": 0.5917,
+                "topic_relevance": 0.875
+              }
+            },
+            {
+              "rank": 5,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "新浪新闻",
+              "text": "#金秀贤公开录音证据#【金秀贤公开1年前录音证据！寄存证信函「有告知金赛纶不要惊慌」】#金秀贤控诉金赛纶遗属隐瞒事实#据@ETtoday星光雲官方微博 金秀贤在记者会上公开了一段1年前的通话录音档，强调关于公司寄存证信函给金赛纶一事，早就和女方经纪公司说明过，反控金赛纶遗属隐瞒事实。 ​",
+              "emotion": "unknown",
+              "reason": "事实澄清视角",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7001,
+                "authority": 143.4596,
+                "depth": 0.5663,
+                "emotion_balance": 0.675,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 6,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "ETtoday星光雲官方微博",
+              "text": "#金秀贤公布与金赛纶亲属通话录音# 【金秀贤公开1年前录音证据！寄存证信函「有告知金赛纶不要惊慌」】金秀贤在记者会上公开了一段1年前的通话录音档，强调关于公司寄存证信函给金赛纶一事，早就和女方经纪公司说明过，反控金赛纶遗属隐瞒事实。 #金秀贤记者会直播# 录音档中，金秀贤的经纪公司Goldm ​",
+              "emotion": "unknown",
+              "reason": "事实澄清视角",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6932,
+                "authority": 120.041,
+                "depth": 0.5075,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.875
+              }
+            },
+            {
+              "rank": 7,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "新浪新闻",
+              "text": "#公司称金秀贤不知道金赛纶债务短信#【#金秀贤因心理不安才提前回应#】据潇湘晨报，韩国媒体《明星每日新闻》等14日报道，演员金秀贤经纪公司“金牌得主”14日发表了官方声明。 该经纪公司表示，“报道都不是事实，由于毫无根据的主张，金秀贤正在经历严重的心理痛苦”，“当初计划下周发布声明，但考 ​",
+              "emotion": "unknown",
+              "reason": "事实澄清视角",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.688,
+                "authority": 135.7469,
+                "depth": 0.64,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 8,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "羊城晚报",
+              "text": "【#金秀贤直播否认与金赛纶未成年时交往# 】#金秀贤记者会直播##金秀贤直播哭了#金秀贤于3月31日下午4点30分（北京时间下午3点30分）在首尔上岩洞斯坦福酒店举行记者会。他与法律代理人一同出席，正式就近期事件表明立场。 金秀贤一上来向媒体鞠躬，他表示：“因为我一个人的原因，好像让很多人受到了 ​",
+              "emotion": "unknown",
+              "reason": "责任边界补充",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6851,
+                "authority": 122.8262,
+                "depth": 0.5813,
+                "emotion_balance": 0.5917,
+                "topic_relevance": 0.875
+              }
+            }
+          ]
+        },
+        "anti_polarization": {
+          "label": "反制情绪极化",
+          "description": "过滤强负面表达，优先推荐中性、权威、解释性内容，引导情绪降温。",
+          "recommendations": [
+            {
+              "rank": 1,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "舞台与银幕",
+              "text": "#金秀贤道歉##金秀贤记者会直播# 今日（3月31日）下午，韩国演员金秀贤在首尔举行记者发布会，正式回应了近期争议话题。在发布会上，他声泪俱下，承认与金赛纶在五年前交往了一年多，“但那时候我否认了我们正在交往的事实。大家批评我，这是理所当然的事情。”不过他仍否认“在金赛纶未成年时便与她交 ...全文",
+              "emotion": "neutral",
+              "reason": "情绪降温",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.8098,
+                "authority": 123.7732,
+                "depth": 0.5125,
+                "emotion_balance": 0.9417,
+                "topic_relevance": 0.875
+              }
+            },
+            {
+              "rank": 2,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "新浪新闻",
+              "text": "#金秀贤公开录音证据#【金秀贤公开1年前录音证据！寄存证信函「有告知金赛纶不要惊慌」】#金秀贤控诉金赛纶遗属隐瞒事实#据@ETtoday星光雲官方微博 金秀贤在记者会上公开了一段1年前的通话录音档，强调关于公司寄存证信函给金赛纶一事，早就和女方经纪公司说明过，反控金赛纶遗属隐瞒事实。 ​",
+              "emotion": "unknown",
+              "reason": "权威事实梳理",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7353,
+                "authority": 143.4596,
+                "depth": 0.5663,
+                "emotion_balance": 0.675,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 3,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "新浪新闻",
+              "text": "#公司称金秀贤不知道金赛纶债务短信#【#金秀贤因心理不安才提前回应#】据潇湘晨报，韩国媒体《明星每日新闻》等14日报道，演员金秀贤经纪公司“金牌得主”14日发表了官方声明。 该经纪公司表示，“报道都不是事实，由于毫无根据的主张，金秀贤正在经历严重的心理痛苦”，“当初计划下周发布声明，但考 ​",
+              "emotion": "unknown",
+              "reason": "权威事实梳理",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7275,
+                "authority": 135.7469,
+                "depth": 0.64,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 4,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "大象文娱",
+              "text": "【#金秀贤痛哭想结束这地狱般生活#】 3月31日下午，韩国男演员金秀贤在首尔举行记者发布会。#金秀贤22天内否认6次# 金秀贤说：“我与故人（金赛纶）的私生活每当被暴露出来的时候，我就想着要不我都说出来吧，赶紧结束这地狱般的痛苦的生活。《眼泪女王》这部剧，当故人（金赛纶）把我们俩合照放上去的 ...全文",
+              "emotion": "positive",
+              "reason": "情绪降温",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7153,
+                "authority": 129.8463,
+                "depth": 0.38,
+                "emotion_balance": 0.8,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 5,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "极目新闻",
+              "text": "#金秀贤承认与金赛纶恋情#【#叶璇自爆剧组有男演员pua弱者#】 #叶璇否认说金秀贤很下头# 3月14日，叶璇说金秀贤很下头登上热搜，刚刚，@叶璇 发文回应表示：看看断章取义的典型。我们当时在讨论金秀贤的事件，我说因为不是当事人、目前没有证据证明别人交往到什么程度、所以无法判断金秀贤事件的真相。 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7132,
+                "authority": 128.4128,
+                "depth": 0.5813,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 6,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "津云新闻",
+              "text": "【#金秀贤回应Deepseek总结版#】 3月14日，金秀贤发万字长文，文中他承认了和金赛纶的恋情，并回应了信件问题、经济问题等。Deepseek给出了万字长文“省流版”，还总结金秀贤的长文称：“金秀贤的万字长文回应试图从多个角度澄清争议，但其效果取决于公众对证据的信任度。”#金秀贤承认与金赛纶恋情#（ ​",
+              "emotion": "unknown",
+              "reason": "权威事实梳理",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7065,
+                "authority": 122.9544,
+                "depth": 0.5913,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 7,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "ETtoday星光雲官方微博",
+              "text": "#金秀贤公布与金赛纶亲属通话录音# 【金秀贤公开1年前录音证据！寄存证信函「有告知金赛纶不要惊慌」】金秀贤在记者会上公开了一段1年前的通话录音档，强调关于公司寄存证信函给金赛纶一事，早就和女方经纪公司说明过，反控金赛纶遗属隐瞒事实。 #金秀贤记者会直播# 录音档中，金秀贤的经纪公司Goldm ​",
+              "emotion": "unknown",
+              "reason": "权威事实梳理",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7063,
+                "authority": 120.041,
+                "depth": 0.5075,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.875
+              }
+            },
+            {
+              "rank": 8,
+              "event": "金赛纶直播揭露与金秀贤家暴爱情",
+              "user_name": "逐浪新闻",
+              "text": "【#金秀贤回应Deepseek总结版##金秀贤承认与金赛纶恋情# 】 3月14日，金秀贤发万字长文，文中他承认了和金赛纶的恋情，并回应了信件问题、经济问题等。Deepseek给出了万字长文“省流版”，还总结金秀贤的长文称：“金秀贤的万字长文回应试图从多个角度澄清争议，但其效果取决于公众对证据的信任度。” ​",
+              "emotion": "unknown",
+              "reason": "权威事实梳理",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7034,
+                "authority": 121.0043,
+                "depth": 0.5913,
+                "emotion_balance": 0.6333,
+                "topic_relevance": 0.75
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "demo_case_003",
+      "user_id": "demo_user_003",
+      "user_name": "演示用户C",
+      "topic": "陈德容在《浪姐6》遭受网络暴力",
+      "display_label": "演示用户C / 陈德容在《浪姐6》遭受网络暴力",
+      "current_post": "#陈德容王蓉吵起来了# 【年轻时是貌美的顶流小花，现在上一次综艺就被吐槽一次？】《浪姐6》开播半个月，观众们期待已久的“姐学”如约而至——一公分组后，陈德容和王蓉因排舞引发争执，陈德容怒斥王蓉“太自我”，但观众却觉得，是陈德容脾气大，太难伺候。当然，也可能是陈德容的事业运太顺，早就习 ...全文",
+      "profile": {
+        "topic_interactions": 7,
+        "negative_ratio": 0.0,
+        "emotion_counts": {},
+        "strategy_diff_ratio": 0.4
+      },
+      "strategies": {
+        "anti_cocoon": {
+          "label": "反制信息茧房",
+          "description": "同主题下引入责任边界、事实澄清和多元视角内容，减少单一观点强化。",
+          "recommendations": [
+            {
+              "rank": 1,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "四川观察",
+              "text": "【#江一燕说参加浪姐找回了自信#】10月30日，42岁江一燕@我是江一燕 在节目中自曝已离婚： “事业上没有好的机会，生活上结束了婚姻。”#江一燕离婚后专心搞事业#：参加《浪姐6》前一度处于低谷期，姐姐们的榜样能量让自己找到了方向。 #江一燕离婚# http://t.cn/AXAU9hC7 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6427,
+                "authority": 132.4425,
+                "depth": 0.3675,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 2,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "搜狐娱乐",
+              "text": "#陈德容王蓉吵起来了# 【年轻时是貌美的顶流小花，现在上一次综艺就被吐槽一次？】《浪姐6》开播半个月，观众们期待已久的“姐学”如约而至——一公分组后，陈德容和王蓉因排舞引发争执，陈德容怒斥王蓉“太自我”，但观众却觉得，是陈德容脾气大，太难伺候。当然，也可能是陈德容的事业运太顺，早就习 ...全文",
+              "emotion": "neutral",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6421,
+                "authority": 131.9626,
+                "depth": 0.37,
+                "emotion_balance": 0.9,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 3,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "988陕西音乐广播",
+              "text": "#王蓉回应浪姐被淘汰# #王蓉浪姐6一公淘汰##王蓉 一公淘汰# 王蓉在《乘风2025》（《浪姐6》）一公舞台后遭淘汰引发热议，其本人通过直播和采访多次回应此事。 王蓉的回应与态度 意外与不甘：王蓉称得知淘汰时“愣了几秒”，坦言“平静过后仍有不甘心”，认为自己实力在线却未获应有认可，甚至调侃“复 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6348,
+                "authority": 117.1843,
+                "depth": 0.4437,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 4,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "四川卫视",
+              "text": "【#江一燕说参加浪姐找到了方向#】10月30日，42岁江一燕@我是江一燕 在节目中自曝已离婚： “事业上没有好的机会，生活上结束了婚姻。参加《浪姐6》前一度处于低谷期，姐姐们的榜样能量让自己找到了方向。” #川川直击娱乐# （来源：@四川观察 ） http://t.cn/AXAbJJqJ ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6263,
+                "authority": 120.5919,
+                "depth": 0.365,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 5,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "津云新闻",
+              "text": "【《浪姐6》王蓉被淘汰引热议，网友：复活姐姐吧】《乘风2025》初代唱跳女星@王蓉 遗憾被淘汰，成为众多网友的“意难平”。此前，#陈德容#和王蓉因为舞蹈进度问题发生分歧，陈德容说王蓉太自我了，一度引发争议。事后陈德容发长文称接受大家的批评：“我不知道怎么去描述我跟不上的时候内心的慌乱，也 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6219,
+                "authority": 122.7581,
+                "depth": 0.365,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 6,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "逐浪新闻",
+              "text": "【被质疑《浪姐6》“划水” #陈德容称一公是尽全力呈现#】近日，《浪姐6》一公播出，陈德容被网友质疑“划水”。网友：王蓉凭什么被淘汰？ 节目中，陈德容和王蓉因排练起争执，引发热议。#王蓉淘汰陈德容被骂# @陈德容 28日晚发文称，接受大家的批评，“我也不满意自己的表现。”陈德容称四肢不是很听 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6203,
+                "authority": 121.6064,
+                "depth": 0.37,
+                "emotion_balance": 0.475,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 7,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "四川观察在现场",
+              "text": "【#江一燕说参加浪姐找回了自信#】10月30日，42岁江一燕@我是江一燕 在节目中自曝已离婚： “事业上没有好的机会，生活上结束了婚姻。”#江一燕离婚后专心搞事业#：参加《浪姐6》前一度处于低谷期，姐姐们的榜样能量让自己找到了方向。@四川观察 http://t.cn/AXAU9hC7 ​",
+              "emotion": "unknown",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6199,
+                "authority": 117.7315,
+                "depth": 0.36,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 8,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "封面新闻",
+              "text": "【被质疑《浪姐6》“划水” #陈德容称一公是尽全力呈现#】近日，《浪姐6》一公播出，陈德容被网友质疑“划水”。网友：王蓉凭什么被淘汰？ 节目中，陈德容和王蓉因排练起争执，引发热议。#王蓉淘汰陈德容被骂# @陈德容 28日晚发文称，接受大家的批评，“我也不满意自己的表现。”陈德容称四肢不是很听 ...全文",
+              "emotion": "very_negative",
+              "reason": "同主题差异化内容",
+              "strategy": "anti_cocoon",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6159,
+                "authority": 117.6805,
+                "depth": 0.38,
+                "emotion_balance": 0.0,
+                "topic_relevance": 1.0
+              }
+            }
+          ]
+        },
+        "anti_polarization": {
+          "label": "反制情绪极化",
+          "description": "过滤强负面表达，优先推荐中性、权威、解释性内容，引导情绪降温。",
+          "recommendations": [
+            {
+              "rank": 1,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "搜狐娱乐",
+              "text": "#陈德容王蓉吵起来了# 【年轻时是貌美的顶流小花，现在上一次综艺就被吐槽一次？】《浪姐6》开播半个月，观众们期待已久的“姐学”如约而至——一公分组后，陈德容和王蓉因排舞引发争执，陈德容怒斥王蓉“太自我”，但观众却觉得，是陈德容脾气大，太难伺候。当然，也可能是陈德容的事业运太顺，早就习 ...全文",
+              "emotion": "neutral",
+              "reason": "情绪降温",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.79,
+                "authority": 131.9626,
+                "depth": 0.37,
+                "emotion_balance": 0.9,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 2,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "综艺崽崽酱",
+              "text": "#陈德容#感觉一生顺风顺水的陈德容真的在乘风破浪感受到风浪了。最近浪姐热播，陈德容先是因为和王蓉起争执被讨 论，后来又因为表现不好且看起来训练不上心被吐槽。 节目看下来觉得浪姐压力确实大，加上陈德容之前没有经历过这些吧，一直比较顺，所以就容易情绪受影响。但是不管怎么说，参加这种综艺就 ...全文",
+              "emotion": "neutral",
+              "reason": "情绪降温",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.7188,
+                "authority": 132.5231,
+                "depth": 0.4387,
+                "emotion_balance": 0.9,
+                "topic_relevance": 0.5
+              }
+            },
+            {
+              "rank": 3,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "四川观察",
+              "text": "【#江一燕说参加浪姐找回了自信#】10月30日，42岁江一燕@我是江一燕 在节目中自曝已离婚： “事业上没有好的机会，生活上结束了婚姻。”#江一燕离婚后专心搞事业#：参加《浪姐6》前一度处于低谷期，姐姐们的榜样能量让自己找到了方向。 #江一燕离婚# http://t.cn/AXAU9hC7 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6705,
+                "authority": 132.4425,
+                "depth": 0.3675,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 4,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "988陕西音乐广播",
+              "text": "#王蓉回应浪姐被淘汰# #王蓉浪姐6一公淘汰##王蓉 一公淘汰# 王蓉在《乘风2025》（《浪姐6》）一公舞台后遭淘汰引发热议，其本人通过直播和采访多次回应此事。 王蓉的回应与态度 意外与不甘：王蓉称得知淘汰时“愣了几秒”，坦言“平静过后仍有不甘心”，认为自己实力在线却未获应有认可，甚至调侃“复 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6652,
+                "authority": 117.1843,
+                "depth": 0.4437,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 5,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "新浪新闻",
+              "text": "【#吴宣仪浪姐6感恩粉丝#：没有粉丝不会走这么远】据@荔枝新闻 近日，吴宣仪在《浪姐6》的采访中坦言：会有情绪低落的时候，分享了一些缓解情绪的方法，包括关掉手机、出门散步等。她也表达了对粉丝的感谢，说“和粉丝是相互鼓励的一个状态”，并表示：“没有粉丝们的鼓励，其实我也不会走这么远。”据 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6651,
+                "authority": 127.2219,
+                "depth": 0.3625,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 6,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "津云新闻",
+              "text": "【《浪姐6》王蓉被淘汰引热议，网友：复活姐姐吧】《乘风2025》初代唱跳女星@王蓉 遗憾被淘汰，成为众多网友的“意难平”。此前，#陈德容#和王蓉因为舞蹈进度问题发生分歧，陈德容说王蓉太自我了，一度引发争议。事后陈德容发长文称接受大家的批评：“我不知道怎么去描述我跟不上的时候内心的慌乱，也 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6584,
+                "authority": 122.7581,
+                "depth": 0.365,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            },
+            {
+              "rank": 7,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "大皖新闻",
+              "text": "【#陈德容社交媒体回应浪姐争议##陈德容回应和歌手王蓉争执#】近日，综艺《乘风破浪2025》（浪姐6）播出，嘉宾@陈德容 在节目中的表现以及与另一位嘉宾@王蓉 在节目中发生争吵等事件引发网友热议。 节目中，小组排练舞蹈时，陈德容没有舞蹈基础，导致舞蹈老师一直停留在前两拍抠细节。有舞蹈基础的王 ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6559,
+                "authority": 129.9188,
+                "depth": 0.5075,
+                "emotion_balance": 0.55,
+                "topic_relevance": 0.75
+              }
+            },
+            {
+              "rank": 8,
+              "event": "陈德容在《浪姐6》遭受网络暴力",
+              "user_name": "荔枝新闻",
+              "text": "【#吴宣仪感恩粉丝帮自己度过情绪低谷#：没有粉丝不会走这么远】近日，吴宣仪在《浪姐6》的采访中坦言：会有情绪低落的时候，分享了一些缓解情绪的方法，包括关掉手机、出门散步等。她也表达了对粉丝的感谢，说“和粉丝是相互鼓励的一个状态”，并表示：“没有粉丝们的鼓励，其实我也不会走这么远。” ​",
+              "emotion": "unknown",
+              "reason": "中性内容引导",
+              "strategy": "anti_polarization",
+              "source": "rec2_offline",
+              "scores": {
+                "final": 0.6555,
+                "authority": 121.9045,
+                "depth": 0.3575,
+                "emotion_balance": 0.55,
+                "topic_relevance": 1.0
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
