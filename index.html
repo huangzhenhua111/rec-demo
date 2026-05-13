@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反信息茧房推荐系统 Demo</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --line: #d9e0ea;
+            --text: #202733;
+            --muted: #697586;
+            --blue: #2364aa;
+            --green: #1d7f62;
+            --orange: #b85c00;
+            --red: #b42318;
+            --shadow: 0 12px 30px rgba(32, 39, 51, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .app {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 28px 24px 40px;
+        }
+
+        header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.2;
+            letter-spacing: 0;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .status {
+            min-width: 220px;
+            text-align: right;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .toolbar {
+            display: grid;
+            grid-template-columns: minmax(260px, 1.2fr) minmax(280px, 1fr);
+            gap: 16px;
+            margin-top: 22px;
+            align-items: end;
+        }
+
+        .field label,
+        .strategy-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        select {
+            width: 100%;
+            height: 42px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--text);
+            padding: 0 12px;
+            font-size: 15px;
+        }
+
+        .segmented {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            height: 42px;
+        }
+
+        .segmented button {
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--text);
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .segmented button.active {
+            border-color: var(--blue);
+            background: var(--blue);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .panel-header {
+            padding: 16px 18px 0;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .current-post {
+            padding: 12px 18px 18px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .strategy-card {
+            padding: 16px 18px 18px;
+        }
+
+        .strategy-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            border-radius: 999px;
+            padding: 0 10px;
+            background: #eef4ff;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .strategy-desc {
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .metric {
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 8px 10px;
+            min-width: 120px;
+            background: #fbfcfe;
+        }
+
+        .metric b {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 16px;
+        }
+
+        .metric span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 24px 0 12px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: 0;
+        }
+
+        .rec-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .rec-card {
+            padding: 16px 18px;
+        }
+
+        .rec-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .rank {
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .user {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .event {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        .reason {
+            flex: 0 0 auto;
+            border-radius: 999px;
+            padding: 5px 10px;
+            color: #fff;
+            background: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .reason.polarization {
+            background: var(--orange);
+        }
+
+        .rec-text {
+            line-height: 1.65;
+            font-size: 15px;
+        }
+
+        .score-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .score-row span {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 4px 8px;
+            background: #fbfcfe;
+        }
+
+        .empty,
+        .error {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 8px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: var(--red);
+        }
+
+        @media (max-width: 760px) {
+            .app {
+                padding: 20px 14px 32px;
+            }
+
+            header,
+            .summary {
+                display: block;
+            }
+
+            .status {
+                text-align: left;
+                margin-top: 10px;
+            }
+
+            .toolbar {
+                grid-template-columns: 1fr;
+            }
+
+            .strategy-card {
+                margin-top: 14px;
+            }
+
+            .rec-top {
+                display: block;
+            }
+
+            .reason {
+                display: inline-flex;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <div>
+                <h1>反信息茧房推荐系统 Demo</h1>
+                <div class="subtitle">基于离线算法结果展示用户主题选择、反制信息茧房与反制情绪极化两类策略</div>
+            </div>
+            <div class="status" id="status">正在加载 demo_recommendations.json</div>
+        </header>
+
+        <main id="main" hidden>
+            <div class="toolbar">
+                <div class="field">
+                    <label for="caseSelect">用户 / 主题</label>
+                    <select id="caseSelect"></select>
+                </div>
+                <div>
+                    <div class="strategy-label">展示策略</div>
+                    <div class="segmented" role="tablist" aria-label="展示策略">
+                        <button id="antiCocoonBtn" class="active" type="button" data-strategy="anti_cocoon">反制茧房</button>
+                        <button id="antiPolarizationBtn" type="button" data-strategy="anti_polarization">反制极化</button>
+                    </div>
+                </div>
+            </div>
+
+            <section class="summary">
+                <div class="panel">
+                    <div class="panel-header">当前用户主题内容</div>
+                    <div class="current-post" id="currentPost"></div>
+                </div>
+                <div class="panel strategy-card">
+                    <div class="strategy-title">
+                        <span id="strategyTitle"></span>
+                        <span class="pill">算法离线生成</span>
+                    </div>
+                    <div class="strategy-desc" id="strategyDesc"></div>
+                    <div class="metrics" id="metrics"></div>
+                </div>
+            </section>
+
+            <div class="section-title">
+                <h2>推荐内容列表</h2>
+                <span class="pill" id="resultCount"></span>
+            </div>
+            <section class="rec-list" id="recList"></section>
+        </main>
+
+        <div class="error" id="error" hidden></div>
+    </div>
+
+    <script>
+        const state = {
+            data: null,
+            currentCaseId: null,
+            strategy: "anti_cocoon"
+        };
+
+        const els = {
+            status: document.getElementById("status"),
+            main: document.getElementById("main"),
+            error: document.getElementById("error"),
+            caseSelect: document.getElementById("caseSelect"),
+            currentPost: document.getElementById("currentPost"),
+            strategyTitle: document.getElementById("strategyTitle"),
+            strategyDesc: document.getElementById("strategyDesc"),
+            metrics: document.getElementById("metrics"),
+            resultCount: document.getElementById("resultCount"),
+            recList: document.getElementById("recList"),
+            strategyButtons: Array.from(document.querySelectorAll("[data-strategy]"))
+        };
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function activeCase() {
+            return state.data.cases.find(item => item.case_id === state.currentCaseId) || state.data.cases[0];
+        }
+
+        function formatPercent(value) {
+            const number = Number(value || 0) * 100;
+            return `${number.toFixed(1)}%`;
+        }
+
+        function renderCaseOptions() {
+            els.caseSelect.innerHTML = state.data.cases.map(item => {
+                return `<option value="${escapeHtml(item.case_id)}">${escapeHtml(item.display_label)}</option>`;
+            }).join("");
+            state.currentCaseId = state.data.cases[0]?.case_id || null;
+            els.caseSelect.value = state.currentCaseId;
+        }
+
+        function renderMetrics(item, recommendations) {
+            const profile = item.profile || {};
+            const emotions = profile.emotion_counts || {};
+            const neutralCount = emotions.neutral || 0;
+            const positiveCount = emotions.positive || 0;
+            const negativeCount = emotions.very_negative || 0;
+            els.metrics.innerHTML = `
+                <div class="metric">
+                    <b>${escapeHtml(profile.topic_interactions || 0)}</b>
+                    <span>该主题历史交互</span>
+                </div>
+                <div class="metric">
+                    <b>${formatPercent(profile.negative_ratio)}</b>
+                    <span>历史强负面占比</span>
+                </div>
+                <div class="metric">
+                    <b>${escapeHtml(recommendations.length)}</b>
+                    <span>当前推荐条数</span>
+                </div>
+                <div class="metric">
+                    <b>${escapeHtml(neutralCount + positiveCount)} / ${escapeHtml(negativeCount)}</b>
+                    <span>正中性 / 强负面历史</span>
+                </div>
+            `;
+        }
+
+        function renderRecommendations(recommendations) {
+            const isPolarization = state.strategy === "anti_polarization";
+            els.resultCount.textContent = `${recommendations.length} 条`;
+            if (!recommendations.length) {
+                els.recList.innerHTML = `<div class="empty">当前用户主题下没有足够推荐结果。</div>`;
+                return;
+            }
+            els.recList.innerHTML = recommendations.map(item => {
+                const scores = item.scores || {};
+                return `
+                    <article class="panel rec-card">
+                        <div class="rec-top">
+                            <div>
+                                <div><span class="rank">#${escapeHtml(item.rank)}</span> <span class="user">${escapeHtml(item.user_name)}</span></div>
+                                <div class="event">${escapeHtml(item.event)} · 情绪 ${escapeHtml(item.emotion || "unknown")}</div>
+                            </div>
+                            <span class="reason ${isPolarization ? "polarization" : ""}">${escapeHtml(item.reason)}</span>
+                        </div>
+                        <div class="rec-text">${escapeHtml(item.text)}</div>
+                        <div class="score-row">
+                            <span>综合 ${escapeHtml(scores.final)}</span>
+                            <span>权威 ${escapeHtml(scores.authority)}</span>
+                            <span>相关 ${escapeHtml(scores.topic_relevance)}</span>
+                            <span>深度 ${escapeHtml(scores.depth)}</span>
+                            <span>情绪平衡 ${escapeHtml(scores.emotion_balance)}</span>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        function render() {
+            const item = activeCase();
+            if (!item) {
+                els.error.hidden = false;
+                els.error.textContent = "demo_recommendations.json 中没有 cases 数据。";
+                return;
+            }
+
+            const strategy = item.strategies[state.strategy];
+            const recommendations = strategy?.recommendations || [];
+
+            els.currentPost.textContent = item.current_post || "该用户主题暂无历史文本样例。";
+            els.strategyTitle.textContent = strategy?.label || state.strategy;
+            els.strategyDesc.textContent = strategy?.description || "";
+            renderMetrics(item, recommendations);
+            renderRecommendations(recommendations);
+
+            els.strategyButtons.forEach(button => {
+                button.classList.toggle("active", button.dataset.strategy === state.strategy);
+            });
+        }
+
+        async function init() {
+            try {
+                const response = await fetch("./demo_recommendations.json", { cache: "no-store" });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                state.data = await response.json();
+                if (!state.data.cases || !state.data.cases.length) {
+                    throw new Error("JSON 中没有可展示的 cases");
+                }
+                els.status.textContent = `已加载 ${state.data.cases.length} 个展示案例 · ${state.data.generated_at || ""}`;
+                renderCaseOptions();
+                els.main.hidden = false;
+                render();
+            } catch (error) {
+                els.status.textContent = "加载失败";
+                els.error.hidden = false;
+                els.error.textContent = `无法加载 demo_recommendations.json：${error.message}。请先运行 rec2.py，并用 Live Server 访问本页面。`;
+            }
+        }
+
+        els.caseSelect.addEventListener("change", event => {
+            state.currentCaseId = event.target.value;
+            render();
+        });
+
+        els.strategyButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                state.strategy = button.dataset.strategy;
+                render();
+            });
+        });
+
+        init();
+    </script>
+</body>
+</html>
