@@ -330,7 +330,7 @@
     <div class="app">
         <header>
             <div>
-                <h1>反信息茧房推荐系统 Demo</h1>
+                <h1>舆情内容干预推荐 Demo</h1>
                 <div class="subtitle">基于离线算法结果展示用户主题选择、反制信息茧房与反制情绪极化两类策略</div>
             </div>
             <div class="status" id="status">正在加载 demo_recommendations.json</div>
@@ -345,7 +345,7 @@
                 <div>
                     <div class="strategy-label">展示策略</div>
                     <div class="segmented" role="tablist" aria-label="展示策略">
-                        <button id="antiCocoonBtn" class="active" type="button" data-strategy="anti_cocoon">反制茧房</button>
+                        <button id="antiCocoonBtn" class="active" type="button" data-strategy="anti_cocoon">反制信息茧房</button>
                         <button id="antiPolarizationBtn" type="button" data-strategy="anti_polarization">反制极化</button>
                     </div>
                 </div>
@@ -415,6 +415,18 @@
             return `${number.toFixed(1)}%`;
         }
 
+        function formatEmotion(value) {
+            const emotion = String(value || "unknown");
+            const map = {
+                positive: "正向",
+                neutral: "中性",
+                very_negative: "强负面",
+                negative: "负面",
+                unknown: "未标注"
+            };
+            return map[emotion] || emotion;
+        }
+
         function renderCaseOptions() {
             els.caseSelect.innerHTML = state.data.cases.map(item => {
                 return `<option value="${escapeHtml(item.case_id)}">${escapeHtml(item.display_label)}</option>`;
@@ -459,7 +471,7 @@
                         <div class="rec-top">
                             <div>
                                 <div><span class="rank">#${escapeHtml(item.rank)}</span> <span class="user">${escapeHtml(item.user_name)}</span></div>
-                                <div class="event">${escapeHtml(item.event)} · 情绪 ${escapeHtml(item.emotion || "unknown")}</div>
+                                <div class="event">${escapeHtml(item.event)} · 情绪 ${escapeHtml(formatEmotion(item.emotion))}</div>
                             </div>
                             <span class="reason ${isPolarization ? "polarization" : ""}">${escapeHtml(item.reason)}</span>
                         </div>
