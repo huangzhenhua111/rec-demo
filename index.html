@@ -1,549 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>反信息茧房推荐系统 Demo</title>
-    <style>
-        :root {
-            --bg: #f5f7fb;
-            --panel: #ffffff;
-            --line: #d9e0ea;
-            --text: #202733;
-            --muted: #697586;
-            --blue: #2364aa;
-            --green: #1d7f62;
-            --orange: #b85c00;
-            --red: #b42318;
-            --shadow: 0 12px 30px rgba(32, 39, 51, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .app {
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 28px 24px 40px;
-        }
-
-        header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 24px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 28px;
-            line-height: 1.2;
-            letter-spacing: 0;
-        }
-
-        .subtitle {
-            margin-top: 8px;
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .status {
-            min-width: 220px;
-            text-align: right;
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .toolbar {
-            display: grid;
-            grid-template-columns: minmax(260px, 1.2fr) minmax(280px, 1fr);
-            gap: 16px;
-            margin-top: 22px;
-            align-items: end;
-        }
-
-        .field label,
-        .strategy-label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--muted);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        select {
-            width: 100%;
-            height: 42px;
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            background: var(--panel);
-            color: var(--text);
-            padding: 0 12px;
-            font-size: 15px;
-        }
-
-        .segmented {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            height: 42px;
-        }
-
-        .segmented button {
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            background: var(--panel);
-            color: var(--text);
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        .segmented button.active {
-            border-color: var(--blue);
-            background: var(--blue);
-            color: #fff;
-            font-weight: 700;
-        }
-
-        .summary {
-            display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-            gap: 18px;
-            margin-top: 20px;
-        }
-
-        .panel {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-
-        .panel-header {
-            padding: 16px 18px 0;
-            color: var(--muted);
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .current-post {
-            padding: 12px 18px 18px;
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        .strategy-card {
-            padding: 16px 18px 18px;
-        }
-
-        .strategy-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 8px;
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            min-height: 24px;
-            border-radius: 999px;
-            padding: 0 10px;
-            background: #eef4ff;
-            color: var(--blue);
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .strategy-desc {
-            color: var(--muted);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .metrics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
-        }
-
-        .metric {
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            padding: 8px 10px;
-            min-width: 120px;
-            background: #fbfcfe;
-        }
-
-        .metric b {
-            display: block;
-            margin-bottom: 2px;
-            font-size: 16px;
-        }
-
-        .metric span {
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 24px 0 12px;
-        }
-
-        .section-title h2 {
-            margin: 0;
-            font-size: 20px;
-            letter-spacing: 0;
-        }
-
-        .rec-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .rec-card {
-            padding: 16px 18px;
-        }
-
-        .rec-top {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 10px;
-        }
-
-        .rank {
-            color: var(--blue);
-            font-weight: 800;
-        }
-
-        .user {
-            color: var(--text);
-            font-weight: 700;
-        }
-
-        .event {
-            color: var(--muted);
-            font-size: 13px;
-            margin-top: 3px;
-        }
-
-        .reason {
-            flex: 0 0 auto;
-            border-radius: 999px;
-            padding: 5px 10px;
-            color: #fff;
-            background: var(--green);
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .reason.polarization {
-            background: var(--orange);
-        }
-
-        .rec-text {
-            line-height: 1.65;
-            font-size: 15px;
-        }
-
-        .score-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .score-row span {
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            padding: 4px 8px;
-            background: #fbfcfe;
-        }
-
-        .empty,
-        .error {
-            margin-top: 20px;
-            padding: 18px;
-            border-radius: 8px;
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
-            color: var(--red);
-        }
-
-        @media (max-width: 760px) {
-            .app {
-                padding: 20px 14px 32px;
-            }
-
-            header,
-            .summary {
-                display: block;
-            }
-
-            .status {
-                text-align: left;
-                margin-top: 10px;
-            }
-
-            .toolbar {
-                grid-template-columns: 1fr;
-            }
-
-            .strategy-card {
-                margin-top: 14px;
-            }
-
-            .rec-top {
-                display: block;
-            }
-
-            .reason {
-                display: inline-flex;
-                margin-top: 8px;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>认知引导推荐系统 · 四策略认知引导推荐演示（静态回放版）</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Microsoft YaHei",sans-serif;background:#f3f5f9;color:#1f2937}
+header{background:#1e293b;color:#fff;padding:14px 22px;font-size:20px;font-weight:600}
+header small{font-weight:400;color:#94a3b8;font-size:13px;margin-left:12px}
+.wrap{display:flex;gap:16px;padding:16px;align-items:flex-start}
+.left{width:340px;flex:none;display:flex;flex-direction:column;gap:12px}
+.right{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
+.card{background:#fff;border-radius:10px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h3{margin:0 0 10px;font-size:15px}
+.strat{display:block;border:1px solid #e5e7eb;border-radius:8px;padding:9px 10px;margin-bottom:8px;cursor:pointer}
+.strat:has(input:checked){border-color:#2563eb;background:#eff6ff}
+.strat b{font-size:14px}.strat span{display:block;color:#6b7280;font-size:12px;margin-top:3px;line-height:1.5}
+select{width:100%;padding:7px;margin-bottom:10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px}
+label.l{font-size:12px;color:#6b7280;display:block;margin-bottom:3px}
+.btns{display:flex;gap:8px}
+button{flex:1;padding:10px;border:0;border-radius:8px;font-size:14px;cursor:pointer;color:#fff;background:#2563eb}
+button.alt{background:#7c3aed}button:disabled{opacity:.5;cursor:not-allowed}
+.hist{font-size:12px;color:#4b5563;line-height:1.6;background:#f9fafb;padding:8px;border-radius:6px}
+#term{background:#0b0f14;color:#d1d5db;font:12.5px/1.45 Consolas,"DejaVu Sans Mono",monospace;padding:12px;border-radius:10px;height:520px;overflow:auto;white-space:pre-wrap;word-break:break-all}
+.res{display:none}
+.big{font-size:56px;font-weight:700;color:#059669;line-height:1.1}
+.big small{font-size:18px;color:#6b7280;font-weight:400;margin-left:10px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.mini{background:#f9fafb;border-radius:8px;padding:10px}.mini b{font-size:22px;color:#2563eb;display:block}.mini span{font-size:12px;color:#6b7280}
+.item{border:1px solid #e5e7eb;border-radius:8px;padding:10px;margin-bottom:8px}
+.item.hit{border-color:#86efac;background:#f0fdf4}
+.item .top{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:5px}
+.item .txt{font-size:13px;line-height:1.55}
+.item .meta{font-size:12px;color:#6b7280;margin-top:6px}
+.tag{display:inline-block;background:#e5e7eb;border-radius:4px;padding:1px 6px;margin-right:5px}
+.ok{color:#059669}.no{color:#9ca3af}
+</style>
 </head>
 <body>
-    <div class="app">
-        <header>
-            <div>
-                <h1>舆情内容干预推荐 Demo</h1>
-                <div class="subtitle">基于离线算法结果展示用户主题选择、反制信息茧房与反制情绪极化两类策略</div>
-            </div>
-            <div class="status" id="status">正在加载 demo_recommendations.json</div>
-        </header>
-
-        <main id="main" hidden>
-            <div class="toolbar">
-                <div class="field">
-                    <label for="caseSelect">用户 / 主题</label>
-                    <select id="caseSelect"></select>
-                </div>
-                <div>
-                    <div class="strategy-label">展示策略</div>
-                    <div class="segmented" role="tablist" aria-label="展示策略">
-                        <button id="antiCocoonBtn" class="active" type="button" data-strategy="anti_cocoon">反制信息茧房</button>
-                        <button id="antiPolarizationBtn" type="button" data-strategy="anti_polarization">反制极化</button>
-                    </div>
-                </div>
-            </div>
-
-            <section class="summary">
-                <div class="panel">
-                    <div class="panel-header">当前用户主题内容</div>
-                    <div class="current-post" id="currentPost"></div>
-                </div>
-                <div class="panel strategy-card">
-                    <div class="strategy-title">
-                        <span id="strategyTitle"></span>
-                        <span class="pill">算法离线生成</span>
-                    </div>
-                    <div class="strategy-desc" id="strategyDesc"></div>
-                    <div class="metrics" id="metrics"></div>
-                </div>
-            </section>
-
-            <div class="section-title">
-                <h2>推荐内容列表</h2>
-                <span class="pill" id="resultCount"></span>
-            </div>
-            <section class="rec-list" id="recList"></section>
-        </main>
-
-        <div class="error" id="error" hidden></div>
-    </div>
-
-    <script>
-        const state = {
-            data: null,
-            currentCaseId: null,
-            strategy: "anti_cocoon"
-        };
-
-        const els = {
-            status: document.getElementById("status"),
-            main: document.getElementById("main"),
-            error: document.getElementById("error"),
-            caseSelect: document.getElementById("caseSelect"),
-            currentPost: document.getElementById("currentPost"),
-            strategyTitle: document.getElementById("strategyTitle"),
-            strategyDesc: document.getElementById("strategyDesc"),
-            metrics: document.getElementById("metrics"),
-            resultCount: document.getElementById("resultCount"),
-            recList: document.getElementById("recList"),
-            strategyButtons: Array.from(document.querySelectorAll("[data-strategy]"))
-        };
-
-        function escapeHtml(value) {
-            return String(value ?? "")
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
-        }
-
-        function activeCase() {
-            return state.data.cases.find(item => item.case_id === state.currentCaseId) || state.data.cases[0];
-        }
-
-        function formatPercent(value) {
-            const number = Number(value || 0) * 100;
-            return `${number.toFixed(1)}%`;
-        }
-
-        function formatEmotion(value) {
-            const emotion = String(value || "unknown");
-            const map = {
-                positive: "正向",
-                neutral: "中性",
-                very_negative: "强负面",
-                negative: "负面",
-                unknown: "未标注"
-            };
-            return map[emotion] || emotion;
-        }
-
-        function renderCaseOptions() {
-            els.caseSelect.innerHTML = state.data.cases.map(item => {
-                return `<option value="${escapeHtml(item.case_id)}">${escapeHtml(item.display_label)}</option>`;
-            }).join("");
-            state.currentCaseId = state.data.cases[0]?.case_id || null;
-            els.caseSelect.value = state.currentCaseId;
-        }
-
-        function renderMetrics(item, recommendations) {
-            const profile = item.profile || {};
-            els.metrics.innerHTML = `
-                <div class="metric">
-                    <b>${escapeHtml(profile.topic_interactions || 0)}</b>
-                    <span>该主题历史交互</span>
-                </div>
-                <div class="metric">
-                    <b>${formatPercent(profile.negative_ratio)}</b>
-                    <span>历史强负面占比</span>
-                </div>
-                <div class="metric">
-                    <b>${escapeHtml(recommendations.length)}</b>
-                    <span>当前推荐条数</span>
-                </div>
-                <div class="metric">
-                    <b>${formatPercent(profile.strategy_diff_ratio || 0)}</b>
-                    <span>两策略差异度</span>
-                </div>
-            `;
-        }
-
-        function renderRecommendations(recommendations) {
-            const isPolarization = state.strategy === "anti_polarization";
-            els.resultCount.textContent = `${recommendations.length} 条`;
-            if (!recommendations.length) {
-                els.recList.innerHTML = `<div class="empty">当前用户主题下没有足够推荐结果。</div>`;
-                return;
-            }
-            els.recList.innerHTML = recommendations.map(item => {
-                const scores = item.scores || {};
-                return `
-                    <article class="panel rec-card">
-                        <div class="rec-top">
-                            <div>
-                                <div><span class="rank">#${escapeHtml(item.rank)}</span> <span class="user">${escapeHtml(item.user_name)}</span></div>
-                                <div class="event">${escapeHtml(item.event)} · 情绪 ${escapeHtml(formatEmotion(item.emotion))}</div>
-                            </div>
-                            <span class="reason ${isPolarization ? "polarization" : ""}">${escapeHtml(item.reason)}</span>
-                        </div>
-                        <div class="rec-text">${escapeHtml(item.text)}</div>
-                        <div class="score-row">
-                            <span>综合 ${escapeHtml(scores.final)}</span>
-                            <span>权威 ${escapeHtml(scores.authority)}</span>
-                            <span>相关 ${escapeHtml(scores.topic_relevance)}</span>
-                            <span>深度 ${escapeHtml(scores.depth)}</span>
-                            <span>情绪平衡 ${escapeHtml(scores.emotion_balance)}</span>
-                        </div>
-                    </article>
-                `;
-            }).join("");
-        }
-
-        function render() {
-            const item = activeCase();
-            if (!item) {
-                els.error.hidden = false;
-                els.error.textContent = "demo_recommendations.json 中没有 cases 数据。";
-                return;
-            }
-
-            const strategy = item.strategies[state.strategy];
-            const recommendations = strategy?.recommendations || [];
-
-            els.currentPost.textContent = item.current_post || "该用户主题暂无历史文本样例。";
-            els.strategyTitle.textContent = strategy?.label || state.strategy;
-            els.strategyDesc.textContent = strategy?.description || "";
-            renderMetrics(item, recommendations);
-            renderRecommendations(recommendations);
-
-            els.strategyButtons.forEach(button => {
-                button.classList.toggle("active", button.dataset.strategy === state.strategy);
-            });
-        }
-
-        async function init() {
-            try {
-                const response = await fetch("./demo_recommendations.json", { cache: "no-store" });
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                state.data = await response.json();
-                if (!state.data.cases || !state.data.cases.length) {
-                    throw new Error("JSON 中没有可展示的 cases");
-                }
-                els.status.textContent = `已加载 ${state.data.cases.length} 个展示案例 · ${state.data.generated_at || ""}`;
-                renderCaseOptions();
-                els.main.hidden = false;
-                render();
-            } catch (error) {
-                els.status.textContent = "加载失败";
-                els.error.hidden = false;
-                els.error.textContent = `无法加载 demo_recommendations.json：${error.message}。请先运行 rec2.py，并用 Live Server 访问本页面。`;
-            }
-        }
-
-        els.caseSelect.addEventListener("change", event => {
-            state.currentCaseId = event.target.value;
-            render();
-        });
-
-        els.strategyButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                state.strategy = button.dataset.strategy;
-                render();
-            });
-        });
-
-        init();
-    </script>
-</body>
-</html>
+<header>认知引导推荐系统 · 四策略认知引导推荐演示（静态回放版）<small>点击运行回放真实运行录下的程序输出（与本地实时版结果一致）</small></header>
+<div class="wrap">
+  <div class="left">
+    <div class="card"><h3>1. 选择策略</h3><div id="strats"></div></div>
+    <div class="card"><h3>2. 选择事件与用户</h3>
+      <label class="l">事件</label><select id="ev"></select>
+      <label class="l">用户</label><select id="us"></select>
+      <div class="hist" id="hist"></div></div>
+    <div class="card"><div class="btns"><button id="run">▶ 运行</button></div></div>
+    <div class="card" style="border-top:3px solid #7c3aed;margin-top:6px"><h3>综合评测</h3>
+      <div style="font-size:12px;color:#6b7280;line-height:1.6;margin-bottom:10px">依次真实运行四个策略程序，对全量 5000 条任务、168 个测试组做统一评测，给出总体推荐准确率。</div>
+      <button id="all" class="alt" style="width:100%">▶ 综合评测</button></div>
+  </div>
+  <div class="right">
+    <div class="card"><h3>终端输出 <span id="state" style="font-weight:400;color:#6b7280;font-size:12px"></span></h3><div id="term"></div></div>
+    <div class="card res" id="allCard"><h3>综合评测结果</h3><div class="big" id="allBig"></div>
+      <div style="font-size:14px;color:#374151;margin-top:10px;line-height:1.6">全量评测 5000 条事件—用户—引导目标—候选判断任务 · 168 个测试组 · 每组输出 Top-10</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:6px;line-height:1.6">准确率 = 各测试组 Top-10 命中率（命中答案集“纳入”条数 ÷ 10）的平均值</div></div>
+    <div class="card res" id="topCard"><h3 id="topTitle"></h3><div id="topList"></div></div>
+  </div>
+</div>
+<script src="data/meta.js"></script><script src="data/summary.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let META=null, REPORTS={}, es=null, running=false;
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const COL={30:'#6b7280',31:'#ef4444',32:'#22c55e',33:'#eab308',34:'#3b82f6',35:'#d946ef',36:'#06b6d4',37:'#e5e7eb',
+ 90:'#6b7280',91:'#f87171',92:'#4ade80',93:'#facc15',94:'#60a5fa',95:'#e879f9',96:'#22d3ee',97:'#fff'};
+function ansi(s){
+  let out='',st={c:null,b:false,d:false},open=false,re=/\x1b\[([0-9;]*)m/g,last=0,m;
+  const emit=t=>{ if(!t)return; let css=''; if(st.c)css+='color:'+st.c+';'; if(st.b)css+='font-weight:700;'; if(st.d)css+='opacity:.6;';
+    out+= css?'<span style="'+css+'">'+esc(t)+'</span>':esc(t); };
+  while((m=re.exec(s))){ emit(s.slice(last,m.index)); last=re.lastIndex;
+    for(const p of (m[1]||'0').split(';').map(Number)){ if(p===0){st={c:null,b:false,d:false}} else if(p===1)st.b=true; else if(p===2)st.d=true; else if(COL[p])st.c=COL[p]; } }
+  emit(s.slice(last)); return out;
+}
+function term(line){ const t=$('term'); const near=t.scrollHeight-t.scrollTop-t.clientHeight<60;
+  const d=document.createElement('div'); d.innerHTML=ansi(line)||'&nbsp;'; t.appendChild(d); if(near)t.scrollTop=t.scrollHeight; }
+const curSid=()=>+document.querySelector('input[name=s]:checked').value;
+const curStrat=()=>META.strategies.find(s=>s.id===curSid());
+function fillEvents(){
+  const st=curStrat(), evs=[...new Map(st.groups.map(g=>[g.event_id,g.event_name]))];
+  $('ev').innerHTML=evs.map(([id,n])=>`<option value="${id}">${id} ${esc(n)}</option>`).join(''); fillUsers();
+}
+function fillUsers(){
+  const gs=curStrat().groups.filter(g=>g.event_id===$('ev').value);
+  $('us').innerHTML=gs.map(g=>`<option value="${g.group_id}">${g.seq_name} · ${g.masked_user_id}</option>`).join(''); showHist();
+}
+function curGroup(){ return curStrat().groups.find(g=>g.group_id===$('us').value); }
+function showHist(){ const g=curGroup(); $('hist').innerHTML=g?`<b>用户类型</b>：${esc(g.user_type_label)}（${esc(g.user_type)}）<br><b>历史记录</b>：${esc(g.history_count)} 条<br>${esc(g.summary)}`:''; }
+async function init(){
+  META=REC.meta;
+  $('strats').innerHTML=META.strategies.map((s,i)=>`<label class="strat"><input type="radio" name="s" value="${s.id}" ${i?'':'checked'}> <b>${s.id}. ${esc(s.name)}</b><span>${esc(s.desc)}</span></label>`).join('');
+  document.querySelectorAll('input[name=s]').forEach(r=>r.onchange=()=>{fillEvents();showTop()});
+  $('ev').onchange=()=>{fillUsers();showTop()}; $('us').onchange=()=>{showHist();showTop()};
+  fillEvents();
+  term('\x1b[90m就绪。选择策略后点击「▶ 运行」，下方将按原节奏回放程序真实运行的输出。\x1b[0m');
+}
+function setBusy(b){ running=b; $('run').disabled=b; $('all').disabled=b; $('state').textContent=b?'运行中…':''; }
+let timers=[];
+const loadJs=n=>new Promise((res,rej)=>{ if(REC[n])return res(); const s=document.createElement('script'); s.src='data/'+n+'.js'; s.onload=res; s.onerror=rej; document.head.appendChild(s); });
+async function run(arg){
+  if(running)return; setBusy(true); REPORTS={};
+  ['allCard','topCard'].forEach(i=>$(i).style.display='none');
+  $('term').innerHTML='';
+  const key=arg==='all'?'all':'s'+arg;
+  try{ await loadJs('log_'+key); if(arg!=='all')await loadJs('top10_s'+arg); }catch(e){ term('\x1b[31m数据加载失败\x1b[0m'); setBusy(false); return; }
+  const ev=REC['log_'+key]; const t0=Date.now(); let i=0;
+  const step=()=>{ const now=Date.now()-t0;
+    while(i<ev.length&&ev[i][0]<=now){ const l=ev[i][1]; if(l===null){ } else term(l); i++; }
+    if(i<ev.length){ setTimeout(step,Math.max(10,ev[i][0]-(Date.now()-t0))); return; }
+    setBusy(false);
+    if(arg==='all')showAll({summary:REC.summary}); else { REPORTS[+arg]=1; showTop(); } };
+  step();
+}
+const pct=a=>(a*100).toFixed(2)+'%';
+function showAll(d){
+  const sm=d.summary; $('allBig').innerHTML=`推荐准确率 ${pct(sm.accuracy)}`;
+  $('allCard').style.display='block'; $('topCard').style.display='none'; }
+async function showTop(){
+  const sid=curSid(); if(!REPORTS[sid]||running){ $('topCard').style.display='none'; return; }
+  const g=curGroup(); await loadJs('top10_s'+sid); const d=REC['top10_s'+sid][g.group_id]; if(!d)return;
+  $('topTitle').innerHTML=`${esc(g.event_id)} ${esc(g.event_name)} · ${esc(g.seq_name)} · Top-10 推荐列表 ` + d.summary.map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('');
+  $('topList').innerHTML=d.items.map(i=>`<div class="item${i.hit?' hit':''}"><div class="top"><span>#${i.rank}${i.hit?' <span class="ok">✓</span>':''}</span><span>${i.tags.map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('')}</span></div>
+   <div class="txt">${esc(i.text)}</div>
+   <div class="meta"><span class="tag">${esc(i.publisher)}</span><span class="tag">粉丝：${esc(i.fan_tier)}</span><span class="tag">热度：${esc(i.heat_tier)}</span><span class="tag">情绪：${esc(i.emotion)}</span>转 ${esc(i.reposts)} · 评 ${esc(i.comments)} · 赞 ${esc(i.likes)}</div></div>`).join('');
+  $('topCard').style.display='block'; }
+$('run').onclick=()=>run(curSid()); $('all').onclick=()=>run('all');
+init();
+</script>
+</body></html>

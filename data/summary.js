@@ -1,0 +1,1 @@
+window.REC=window.REC||{};window.REC["summary"]={"accuracy":0.9273809523809524,"tasks":5000,"groups":168};
