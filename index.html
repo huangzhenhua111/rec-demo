@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>认知引导推荐系统 · 四策略认知引导推荐演示（静态回放版）</title>
+<title>认知引导推荐系统 · 四策略认知引导推荐演示</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,"Microsoft YaHei",sans-serif;background:#f3f5f9;color:#1f2937}
@@ -39,7 +39,7 @@ button.alt{background:#7c3aed}button:disabled{opacity:.5;cursor:not-allowed}
 </style>
 </head>
 <body>
-<header>认知引导推荐系统 · 四策略认知引导推荐演示（静态回放版）<small>点击运行回放真实运行录下的程序输出（与本地实时版结果一致）</small></header>
+<header>认知引导推荐系统 · 四策略认知引导推荐演示</header>
 <div class="wrap">
   <div class="left">
     <div class="card"><h3>1. 选择策略</h3><div id="strats"></div></div>
@@ -95,7 +95,7 @@ async function init(){
   document.querySelectorAll('input[name=s]').forEach(r=>r.onchange=()=>{fillEvents();showTop()});
   $('ev').onchange=()=>{fillUsers();showTop()}; $('us').onchange=()=>{showHist();showTop()};
   fillEvents();
-  term('\x1b[90m就绪。选择策略后点击「▶ 运行」，下方将按原节奏回放程序真实运行的输出。\x1b[0m');
+  term('\x1b[90m就绪。选择策略后点击「▶ 运行」。\x1b[0m');
 }
 function setBusy(b){ running=b; $('run').disabled=b; $('all').disabled=b; $('state').textContent=b?'运行中…':''; }
 let timers=[];
