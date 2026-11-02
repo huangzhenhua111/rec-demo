@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>认知引导数据标注系统</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="login-view" class="login-view">
+      <form id="login-form" class="login-panel">
+        <div>
+          <p class="eyebrow">正式标注</p>
+          <h1>认知引导数据标注系统</h1>
+        </div>
+        <label for="annotator-select">标注人员</label>
+        <select id="annotator-select" required></select>
+        <button type="submit" class="primary-command">进入工作台</button>
+        <p class="hint">数据仅保存在本浏览器本地；换浏览器或清除缓存会丢失，请及时导出 CSV。</p>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+    </section>
+
+    <main id="app-view" class="app-shell" hidden>
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="brand-mark">R</span>
+          <div>
+            <strong>认知引导标注</strong>
+            <span id="annotator-name"></span>
+          </div>
+        </div>
+        <div class="topbar-controls">
+          <label class="compact-field">
+            <span>批次</span>
+            <select id="batch-select"></select>
+          </label>
+          <div class="progress-block">
+            <div class="progress-copy">
+              <span id="progress-text">0 / 0</span>
+              <span id="save-state">未保存</span>
+            </div>
+            <div class="progress-track"><span id="progress-bar"></span></div>
+          </div>
+          <button id="export-button" class="secondary-command top-command" title="导出本人已提交结果为 CSV">导出 CSV</button>
+          <button id="reset-button" class="secondary-command top-command" title="清空本人在本浏览器中的全部标注状态">重置本人状态</button>
+          <button id="logout-button" class="icon-command" title="退出登录" aria-label="退出登录">↪</button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="context-pane">
+          <section class="context-section event-section">
+            <p class="section-label">当前事件</p>
+            <h2 id="event-name"></h2>
+            <div id="event-stats" class="stat-row"></div>
+          </section>
+
+          <section class="context-section">
+            <p class="section-label">当前引导目标</p>
+            <div id="target-list" class="target-list"></div>
+            <p id="guidance-instruction" class="guidance-copy"></p>
+          </section>
+
+          <section class="context-section user-section">
+            <div class="section-heading-row">
+              <p class="section-label">用户信息</p>
+              <code id="masked-user"></code>
+            </div>
+            <p id="history-summary" class="history-summary"></p>
+            <div id="history-list" class="history-list"></div>
+          </section>
+        </aside>
+
+        <section class="candidate-pane">
+          <div class="candidate-heading">
+            <div>
+              <p class="section-label">候选内容</p>
+              <h2 id="candidate-event"></h2>
+            </div>
+            <span id="assignment-role" class="role-badge"></span>
+          </div>
+          <article id="candidate-text" class="candidate-text"></article>
+          <dl id="candidate-attributes" class="attribute-grid"></dl>
+          <div class="source-strip">
+            <span id="candidate-source"></span>
+            <span id="candidate-group"></span>
+            <span id="boundary-flag"></span>
+          </div>
+        </section>
+
+        <aside class="decision-pane">
+          <form id="annotation-form">
+            <div class="decision-header">
+              <div>
+                <p class="section-label">人工标签</p>
+                <h2>该内容是否适合当前任务？</h2>
+              </div>
+              <span id="lock-state"></span>
+            </div>
+            <div id="label-options" class="label-options"></div>
+
+            <fieldset id="risk-fieldset" class="option-fieldset" hidden>
+              <legend>风险项</legend>
+              <div id="risk-options" class="check-grid"></div>
+            </fieldset>
+
+            <label id="other-target-field" class="stacked-field" hidden>
+              <span>更适合的引导目标</span>
+              <select id="other-target-select"></select>
+            </label>
+
+            <label class="stacked-field note-field">
+              <span>备注</span>
+              <textarea id="note-input" rows="5" placeholder="边界依据、风险说明或补充信息"></textarea>
+            </label>
+
+            <p id="form-error" class="error" role="alert"></p>
+            <div class="command-row">
+              <button type="button" id="save-button" class="secondary-command">暂存</button>
+              <button type="submit" id="submit-button" class="primary-command">提交并锁定</button>
+            </div>
+          </form>
+
+          <nav class="task-navigation" aria-label="任务导航">
+            <button id="previous-button" class="icon-command" title="上一条" aria-label="上一条">←</button>
+            <span id="task-position">0 / 0</span>
+            <button id="next-button" class="icon-command" title="下一条" aria-label="下一条">→</button>
+          </nav>
+        </aside>
+      </div>
+    </main>
+    <script src="data/meta.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
