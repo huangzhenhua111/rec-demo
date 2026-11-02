@@ -33,6 +33,8 @@ button.alt{background:#7c3aed}button:disabled{opacity:.5;cursor:not-allowed}
 .item.hit{border-color:#86efac;background:#f0fdf4}
 .item .top{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:5px}
 .item .txt{font-size:13px;line-height:1.55}
+.item .txt.clamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.item .tg{display:none;margin-top:4px;padding:0;border:0;background:none;color:#2563eb;font-size:12px;cursor:pointer}
 .item .meta{font-size:12px;color:#6b7280;margin-top:6px}
 .tag{display:inline-block;background:#e5e7eb;border-radius:4px;padding:1px 6px;margin-right:5px}
 .ok{color:#059669}.no{color:#9ca3af}
@@ -118,14 +120,21 @@ const pct=a=>(a*100).toFixed(2)+'%';
 function showAll(d){
   const sm=d.summary; $('allBig').innerHTML=`推荐准确率 ${pct(sm.accuracy)}`;
   $('allCard').style.display='block'; $('topCard').style.display='none'; }
+function setupFold(root){
+  root.querySelectorAll('.item').forEach(it=>{
+    const t=it.querySelector('.txt'), b=it.querySelector('.tg'); if(!t||!b)return;
+    if(t.scrollHeight>t.clientHeight+1){ b.style.display='inline-block'; b.onclick=()=>{ const c=t.classList.toggle('clamp'); b.textContent=c?'展开原文':'收起'; }; }
+    else { t.classList.remove('clamp'); }
+  });
+}
 async function showTop(){
   const sid=curSid(); if(!REPORTS[sid]||running){ $('topCard').style.display='none'; return; }
   const g=curGroup(); await loadJs('top10_s'+sid); const d=REC['top10_s'+sid][g.group_id]; if(!d)return;
   $('topTitle').innerHTML=`${esc(g.event_id)} ${esc(g.event_name)} · ${esc(g.seq_name)} · Top-10 推荐列表 ` + d.summary.map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('');
   $('topList').innerHTML=d.items.map(i=>`<div class="item${i.hit?' hit':''}"><div class="top"><span>#${i.rank}${i.hit?' <span class="ok">✓</span>':''}</span><span>${i.tags.map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('')}</span></div>
-   <div class="txt">${esc(i.text)}</div>
+   <div class="txt clamp">${esc(i.text)}</div><button type="button" class="tg">展开原文</button>
    <div class="meta"><span class="tag">${esc(i.publisher)}</span><span class="tag">粉丝：${esc(i.fan_tier)}</span><span class="tag">热度：${esc(i.heat_tier)}</span><span class="tag">情绪：${esc(i.emotion)}</span>转 ${esc(i.reposts)} · 评 ${esc(i.comments)} · 赞 ${esc(i.likes)}</div></div>`).join('');
-  $('topCard').style.display='block'; }
+  $('topCard').style.display='block'; setupFold($('topList')); }
 $('run').onclick=()=>run(curSid()); $('all').onclick=()=>run('all');
 init();
 </script>

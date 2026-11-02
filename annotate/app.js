@@ -212,9 +212,24 @@ function renderHistory(task) {
     .map((item) => `
       <article class="history-item">
         <div class="history-meta">${displayDate(item.created_at)} · ${item.emotion_label || "未知"} · 转${item.repost_count} / 评${item.comment_count} / 赞${item.like_count}</div>
-        <p class="history-text">${escapeHtml(item.text || "")}</p>
+        <p class="history-text fold-text">${escapeHtml(item.text || "")}</p>
+        <button type="button" class="fold-btn">展开原文</button>
       </article>`)
     .join("");
+  document.querySelectorAll("#history-list .history-item").forEach((box) => setupFold(box.querySelector(".history-text"), box.querySelector(".fold-btn")));
+}
+
+function setupFold(textEl, btn) {
+  textEl.classList.add("fold-text");
+  btn.textContent = "展开原文";
+  btn.style.display = "none";
+  if (textEl.scrollHeight > textEl.clientHeight + 1) {
+    btn.style.display = "inline-block";
+    btn.onclick = () => {
+      const folded = textEl.classList.toggle("fold-text");
+      btn.textContent = folded ? "展开原文" : "收起";
+    };
+  }
 }
 
 function escapeHtml(value) {
@@ -289,6 +304,7 @@ function renderCurrent() {
   el("candidate-event").textContent = task.candidate_event_name;
   el("assignment-role").textContent = assignment.assignment_role === "qc_repeat" ? "重复抽检" : "主标注";
   el("candidate-text").textContent = task.candidate_text;
+  setupFold(el("candidate-text"), el("candidate-fold"));
   el("candidate-attributes").innerHTML = [
     attribute("发布时间", displayDate(task.candidate_created_at)),
     attribute("情绪", task.candidate_emotion),
