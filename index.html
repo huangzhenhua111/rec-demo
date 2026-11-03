@@ -79,7 +79,7 @@ function ansi(s){
 }
 function term(line){ const t=$('term'); const near=t.scrollHeight-t.scrollTop-t.clientHeight<60;
   const d=document.createElement('div'); d.innerHTML=ansi(line)||'&nbsp;'; t.appendChild(d); if(near)t.scrollTop=t.scrollHeight; }
-// 演示推荐组合：每策略第一个为默认选中，全部在下拉中加粗并标 ★
+// 演示推荐组合：每策略第一个为默认选中，全部在下拉中加粗
 const PICKS={"1": ["PS3G_836381ac5db80d3ebd69", "PS3G_690b14cc4085396845b2", "PS3G_e4c694db0c434dd55251"], "2": ["PS3G_dbe9cc6a94ffd6cc5fe6", "PS3G_c39729a195b201dfdafb", "PS3G_2c3bb92f68a984862b76"], "3": ["PS3G_ba25082b5975607accdb", "PS3G_d902e5bd507c22a2faae", "PS3G_fe2d613690042951c33f"], "4": ["PS3G_c56ff48762be613ec381", "PS3G_6657de9ccd9bf77e09f7", "PS3G_1e6efd978baa629836c8"]};
 const isPick=gid=>(PICKS[curSid()]||[]).includes(gid);
 const curSid=()=>+document.querySelector('input[name=s]:checked').value;
@@ -87,12 +87,12 @@ const curStrat=()=>META.strategies.find(s=>s.id===curSid());
 function fillEvents(){
   const st=curStrat(), evs=[...new Map(st.groups.map(g=>[g.event_id,g.event_name]))];
   const pe=new Set(st.groups.filter(g=>isPick(g.group_id)).map(g=>g.event_id));
-  $('ev').innerHTML=evs.map(([id,n])=>pe.has(id)?`<option value="${id}" style="font-weight:700">★ ${id} ${esc(n)}</option>`:`<option value="${id}">${id} ${esc(n)}</option>`).join('');
+  $('ev').innerHTML=evs.map(([id,n])=>pe.has(id)?`<option value="${id}" style="font-weight:700">${id} ${esc(n)}</option>`:`<option value="${id}">${id} ${esc(n)}</option>`).join('');
   const d=st.groups.find(g=>g.group_id===(PICKS[st.id]||[])[0]); if(d)$('ev').value=d.event_id; fillUsers();
 }
 function fillUsers(){
   const gs=curStrat().groups.filter(g=>g.event_id===$('ev').value);
-  $('us').innerHTML=gs.map(g=>isPick(g.group_id)?`<option value="${g.group_id}" style="font-weight:700">★ ${g.seq_name} · ${g.masked_user_id}（推荐）</option>`:`<option value="${g.group_id}">${g.seq_name} · ${g.masked_user_id}</option>`).join('');
+  $('us').innerHTML=gs.map(g=>isPick(g.group_id)?`<option value="${g.group_id}" style="font-weight:700">${g.seq_name} · ${g.masked_user_id}</option>`:`<option value="${g.group_id}">${g.seq_name} · ${g.masked_user_id}</option>`).join('');
   const p=gs.find(g=>isPick(g.group_id)); if(p)$('us').value=p.group_id; showHist();
 }
 function curGroup(){ return curStrat().groups.find(g=>g.group_id===$('us').value); }
