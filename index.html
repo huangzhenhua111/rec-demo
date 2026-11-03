@@ -62,7 +62,7 @@ button.alt{background:#7c3aed}button:disabled{opacity:.5;cursor:not-allowed}
     <div class="card res" id="topCard"><h3 id="topTitle"></h3><div id="topList"></div></div>
   </div>
 </div>
-<script src="data/meta.js"></script><script src="data/summary.js"></script>
+<script src="data/meta.js"></script><script src="data/hidden.js"></script><script src="data/summary.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 let META=null, REPORTS={}, es=null, running=false;
@@ -93,6 +93,9 @@ function curGroup(){ return curStrat().groups.find(g=>g.group_id===$('us').value
 function showHist(){ const g=curGroup(); $('hist').innerHTML=g?`<b>用户类型</b>：${esc(g.user_type_label)}（${esc(g.user_type)}）<br><b>历史记录</b>：${esc(g.history_count)} 条<br>${esc(g.summary)}`:''; }
 async function init(){
   META=REC.meta;
+  // 演示前端隐藏推荐不合理的事件/组（只影响下拉，不影响算法、Top-10 与准确率）
+  const H=REC.hidden||{}, he=new Set(H.hidden_events||[]), hg=new Set(H.hidden_groups||[]);
+  META.strategies.forEach(s=>s.groups=s.groups.filter(g=>!he.has(g.event_id)&&!hg.has(g.group_id)));
   $('strats').innerHTML=META.strategies.map((s,i)=>`<label class="strat"><input type="radio" name="s" value="${s.id}" ${i?'':'checked'}> <b>${s.id}. ${esc(s.name)}</b><span>${esc(s.desc)}</span></label>`).join('');
   document.querySelectorAll('input[name=s]').forEach(r=>r.onchange=()=>{fillEvents();showTop()});
   $('ev').onchange=()=>{fillUsers();showTop()}; $('us').onchange=()=>{showHist();showTop()};
