@@ -82,6 +82,24 @@ function term(line){ const t=$('term'); const near=t.scrollHeight-t.scrollTop-t.
 // 演示推荐组合：每策略第一个为默认选中，全部在下拉中加粗
 const PICKS={"1": ["PS3G_836381ac5db80d3ebd69", "PS3G_690b14cc4085396845b2", "PS3G_e4c694db0c434dd55251"], "2": ["PS3G_dbe9cc6a94ffd6cc5fe6", "PS3G_c39729a195b201dfdafb", "PS3G_2c3bb92f68a984862b76"], "3": ["PS3G_ba25082b5975607accdb", "PS3G_d902e5bd507c22a2faae", "PS3G_fe2d613690042951c33f"], "4": ["PS3G_c56ff48762be613ec381", "PS3G_6657de9ccd9bf77e09f7", "PS3G_1e6efd978baa629836c8"]};
 const isPick=gid=>(PICKS[curSid()]||[]).includes(gid);
+// 事实澄清：按正文与发布主体识别信源类型与依据（展示用标签，不参与排序与准确率）
+const SRC_OFF=/(卫健委|卫生健康委|警方|公安|法院|检察院|市场监管|政府|官方|通报|公告|声明|官微|发布会|调查组|医调委|工作人员告诉|负责人)/;
+const SRC_MEDIA=/(据.{0,12}报道|记者|新闻|日报|晚报|时报|周刊|电视台|广播|央视|新华|人民网|澎湃|极目|经视|九派|红星|封面|潮新闻|新京报|环球|中新|央广|头条新闻|直播\)|\(.{1,6}(新闻|直播|日报|时报|网)\))/;
+const EVID=/(鉴定|调查|通报|声明|判决|裁定|录音|视频|截图|聊天记录|报告|数据|证据|回应|采访|病历|诊断|时间线)/g;
+function factTags(i){
+  const t=i.text||'', tags=[];
+  let s='网友表述', col='#6b7280', bg='#f3f4f6';
+  const p=i.publisher||'', off=SRC_OFF.test(t), med=SRC_MEDIA.test(t);
+  if(p.includes('官方')||p.includes('政务')||(off&&(p==='媒体'||p==='认证主体'))){s='官方信源';col='#1e40af';bg='#dbeafe';}
+  else if(p==='媒体'||(p==='认证主体'&&med)){s='媒体报道';col='#1e40af';bg='#dbeafe';}
+  else if(p==='认证主体'){s='认证主体';col='#1e40af';bg='#e0e7ff';}
+  else if(off||med){s='转述报道';col='#1e40af';bg='#eef2ff';}
+  tags.push({t:'信源：'+s,col,bg});
+  const ev=[...new Set((t.match(EVID)||[]))].slice(0,2);
+  if(ev.length)tags.push({t:'依据：'+ev.join('、'),col:'#065f46',bg:'#d1fae5'});
+  return tags;
+}
+const tagHtml=x=>`<span class="tag" style="background:${x.bg};color:${x.col}">${esc(x.t)}</span>`;
 const curSid=()=>+document.querySelector('input[name=s]:checked').value;
 const curStrat=()=>META.strategies.find(s=>s.id===curSid());
 function fillEvents(){
@@ -139,8 +157,8 @@ function setupFold(root){
 async function showTop(){
   const sid=curSid(); if(!REPORTS[sid]||running){ $('topCard').style.display='none'; return; }
   const g=curGroup(); await loadJs('top10_s'+sid); const d=REC['top10_s'+sid][g.group_id]; if(!d)return;
-  $('topTitle').innerHTML=`${esc(g.event_id)} ${esc(g.event_name)} · ${esc(g.seq_name)} · Top-10 推荐列表 ` + d.summary.map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('');
-  $('topList').innerHTML=d.items.map(i=>`<div class="item${i.hit?' hit':''}"><div class="top"><span>#${i.rank}${i.hit?' <span class="ok">✓</span>':''}</span><span>${i.tags.map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('')}</span></div>
+  $('topTitle').innerHTML=`${esc(g.event_id)} ${esc(g.event_name)} · ${esc(g.seq_name)} · Top-10 推荐列表 ` + (sid===1?[`含信源 ${d.items.filter(i=>factTags(i)[0].t!=='信源：网友表述').length}/${d.items.length}`]:d.summary).map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('');
+  $('topList').innerHTML=d.items.map(i=>`<div class="item${i.hit?' hit':''}"><div class="top"><span>#${i.rank}${i.hit?' <span class="ok">✓</span>':''}</span><span>${sid===1?factTags(i).map(tagHtml).join(''):i.tags.map(t=>`<span class="tag" style="background:#dbeafe;color:#1e40af">${esc(t)}</span>`).join('')}</span></div>
    <div class="txt clamp">${esc(i.text)}</div><button type="button" class="tg">展开原文</button>
    <div class="meta"><span class="tag">${esc(i.publisher)}</span><span class="tag">粉丝：${esc(i.fan_tier)}</span><span class="tag">热度：${esc(i.heat_tier)}</span><span class="tag">情绪：${esc(i.emotion)}</span>转 ${esc(i.reposts)} · 评 ${esc(i.comments)} · 赞 ${esc(i.likes)}</div></div>`).join('');
   $('topCard').style.display='block'; setupFold($('topList')); }
