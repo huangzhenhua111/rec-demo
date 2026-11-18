@@ -65,6 +65,10 @@ button.alt{background:#7c3aed}button:disabled{opacity:.5;cursor:not-allowed}
 <script src="data/meta.js"></script><script src="data/hidden.js"></script><script src="data/summary.js"></script>
 <script>
 const $=id=>document.getElementById(id);
+const DISP_NAMES={"事实澄清与信源校准":"可信信息校准","热度校正与内容均衡":"内容热度均衡","多元视角与辩证看待":"多视角信息补充","情绪降温与理性表达":"极端情绪抑制"};
+const DISP_RX=new RegExp('(?<![_\\w/])('+Object.keys(DISP_NAMES).join('|')+')(?!算法)','g');
+const dispName=s=>String(s).replace(DISP_RX,m=>DISP_NAMES[m]);
+
 let META=null, REPORTS={}, es=null, running=false;
 const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const COL={30:'#6b7280',31:'#ef4444',32:'#22c55e',33:'#eab308',34:'#3b82f6',35:'#d946ef',36:'#06b6d4',37:'#e5e7eb',
@@ -77,7 +81,7 @@ function ansi(s){
     for(const p of (m[1]||'0').split(';').map(Number)){ if(p===0){st={c:null,b:false,d:false}} else if(p===1)st.b=true; else if(p===2)st.d=true; else if(COL[p])st.c=COL[p]; } }
   emit(s.slice(last)); return out;
 }
-function term(line){ const t=$('term'); const near=t.scrollHeight-t.scrollTop-t.clientHeight<60;
+function term(line){ line=dispName(line); const t=$('term'); const near=t.scrollHeight-t.scrollTop-t.clientHeight<60;
   const d=document.createElement('div'); d.innerHTML=ansi(line)||'&nbsp;'; t.appendChild(d); if(near)t.scrollTop=t.scrollHeight; }
 // 演示推荐组合：每策略第一个为默认选中，全部在下拉中加粗
 const PICKS={"1": ["PS3G_836381ac5db80d3ebd69", "PS3G_690b14cc4085396845b2", "PS3G_e4c694db0c434dd55251"], "2": ["PS3G_dbe9cc6a94ffd6cc5fe6", "PS3G_c39729a195b201dfdafb", "PS3G_2c3bb92f68a984862b76"], "3": ["PS3G_ba25082b5975607accdb", "PS3G_d902e5bd507c22a2faae", "PS3G_fe2d613690042951c33f"], "4": ["PS3G_c56ff48762be613ec381", "PS3G_6657de9ccd9bf77e09f7", "PS3G_1e6efd978baa629836c8"]};
@@ -119,7 +123,7 @@ async function init(){
   // 演示前端隐藏推荐不合理的事件/组（只影响下拉，不影响算法、Top-10 与准确率）
   const H=REC.hidden||{}, he=new Set(H.hidden_events||[]), hg=new Set(H.hidden_groups||[]);
   META.strategies.forEach(s=>s.groups=s.groups.filter(g=>!he.has(g.event_id)&&!hg.has(g.group_id)));
-  $('strats').innerHTML=META.strategies.map((s,i)=>`<label class="strat"><input type="radio" name="s" value="${s.id}" ${i?'':'checked'}> <b>${s.id}. ${esc(s.name)}</b><span>${esc(s.desc)}</span></label>`).join('');
+  $('strats').innerHTML=META.strategies.map((s,i)=>`<label class="strat"><input type="radio" name="s" value="${s.id}" ${i?'':'checked'}> <b>${s.id}. ${esc(dispName(s.name))}</b><span>${esc(s.desc)}</span></label>`).join('');
   document.querySelectorAll('input[name=s]').forEach(r=>r.onchange=()=>{fillEvents();showTop()});
   $('ev').onchange=()=>{fillUsers();showTop()}; $('us').onchange=()=>{showHist();showTop()};
   fillEvents();
